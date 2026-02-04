@@ -34,7 +34,7 @@ namespace LoginAuth.Services
         {
             return new TokenResponseDto
             {
-                AcessToken = CreateToken(user),
+                AccessToken = CreateToken(user),
                 RefreshToken = await GenerateAndSaveRefreshTokenAsynch(user),
             };
         }

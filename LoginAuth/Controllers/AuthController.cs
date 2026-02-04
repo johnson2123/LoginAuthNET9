@@ -47,7 +47,7 @@ namespace LoginAuth.Controllers
         public async Task<ActionResult<TokenResponseDto>> RefreshToken(RefreshTokenRequestDto request)
         {
             var result = await authservice.RefreshTokenAsync(request);
-            if(result is null || result.AcessToken is null || result.RefreshToken is null)
+            if(result is null || result.AccessToken is null || result.RefreshToken is null)
             {
                 return Unauthorized("Invalid refresh token.");
             }
