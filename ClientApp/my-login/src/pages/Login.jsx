@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../services/authService";
 import { login } from "../services/authService";
+import logo from "../assets/logo.png";
 
 export default function Login({ setIsAuthenticated }) {
     const [username, setUsername] = useState("");
@@ -41,7 +42,8 @@ export default function Login({ setIsAuthenticated }) {
     };
 
     return (
-        <div className="flex items-center justify-center h-screen bg-gray-100">
+        <div className="flex items-center justify-center flex-col gap-8 h-screen bg-gray-100">
+            <img src={logo} alt="" />
             <form onSubmit={handleSubmit}
                 className="bg-white p-6 rounded shadow-md w-96">
                 <h2 className="text-2xl font-bold mb-4 text-center">

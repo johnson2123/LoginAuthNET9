@@ -13,7 +13,7 @@ export default function Home({ setIsAuthenticated }) {
 
     return (
 
-        <div className="h-screen flex flex-col bg-green-100">
+        <div className="h-screen flex flex-col bg-green-50">
            
             <Navbar username={username} onLogout={handleLogout} />
 
