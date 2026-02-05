@@ -4,6 +4,7 @@ using LoginAuth.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoginAuth.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    partial class UserDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260205172709_UpdateDocumentDateColumn")]
+    partial class UpdateDocumentDateColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +63,7 @@ namespace LoginAuth.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("Date")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DocumentName")
                         .IsRequired()
@@ -84,6 +87,24 @@ namespace LoginAuth.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UsersDocuments");
+                });
+
+            modelBuilder.Entity("LoginAuth.Models.UserDocumentDto", b =>
+                {
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("DocumentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HardCopy")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("SoftCopy")
+                        .HasColumnType("bit");
+
+                    b.ToTable("UserDocumentDto");
                 });
 
             modelBuilder.Entity("LoginAuth.Entities.UserDocument", b =>

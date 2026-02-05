@@ -10,5 +10,7 @@
         public string? RefreshToken { get; set; }
 
         public DateTime? RefreshTokenExpiryTime { get; set; }
+
+        public ICollection<UserDocument> Documents { get; set; } = new List<UserDocument>();
     }
 }

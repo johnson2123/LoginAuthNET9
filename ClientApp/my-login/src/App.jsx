@@ -6,6 +6,7 @@ import './App.css'
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 import Login from './pages/Login';
 import Home from './pages/Home';
+import DocumentForm from './components/DocumentForm';
 
 function App() {
   const[isAuthenticated, setIsAuthenticated]=useState(false);
@@ -19,8 +20,11 @@ function App() {
     
     <Router>
       <Routes>
+
         <Route path="/" element={isAuthenticated? <Navigate to="/home"/> :<Login setIsAuthenticated={setIsAuthenticated}/> }/>
         <Route path="/home" element={isAuthenticated? <Home setIsAuthenticated={setIsAuthenticated}/> :<Navigate to="/"/> }/>
+        <Route path="/exam-form" element={isAuthenticated? <DocumentForm setIsAuthenticated={setIsAuthenticated}/> :<Navigate to="/"/> }/>
+
       </Routes>
     </Router>
  
