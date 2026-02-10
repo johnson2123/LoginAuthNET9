@@ -50,10 +50,18 @@ namespace LoginAuth.Controllers
                 Username = user.Username
             }).ToList();
 
-            _context.UsersDocuments.AddRange(userDocuments);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.UsersDocuments.AddRange(userDocuments);
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "Documents saved successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new { message = "An error occurred while saving documents", detail = ex.Message });
+            }
 
-            return Ok(new { message = "Documents saved successfully" });
         }
     }
 }

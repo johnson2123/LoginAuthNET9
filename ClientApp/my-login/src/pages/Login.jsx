@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { register } from "../services/authService";
 import { login } from "../services/authService";
 import logo from "../assets/logo.png";
+import { parseJwt } from "../services/jwtUtils";
 
 export default function Login({ setIsAuthenticated }) {
     const [username, setUsername] = useState("");
@@ -32,6 +33,9 @@ export default function Login({ setIsAuthenticated }) {
                 localStorage.setItem("accessToken", result.accessToken);
                 localStorage.setItem("refreshToken", result.refreshToken);
                 localStorage.setItem("username", username);
+
+                const payload = parseJwt(result.accessToken);
+                localStorage.setItem("userId",payload?.nameid);
 
                 setIsAuthenticated(true);
                 navigate("/home");
